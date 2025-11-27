@@ -1,0 +1,361 @@
+/* ------------------------------------- */
+/* CONTENEDOR PRINCIPAL Y FONDO (LOGIN) */
+/* ------------------------------------- */
+
+.login-container {
+    /* Fondo azul principal del sitio */
+    background-color: #2b77c9;
+    /* Asegura que ocupe toda la pantalla */
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    /* Permite posicionar elementos absolutos dentro del contenedor (aunque el botón ya no es absoluto) */
+    position: relative; 
+}
+
+/* ------------------------------------- */
+/* TARJETA DE LOGIN */
+/* ------------------------------------- */
+
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.login-title {
+    color: #333;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* ------------------------------------- */
+/* FORMULARIO Y ENTRADAS */
+/* ------------------------------------- */
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* ------------------------------------- */
+/* BOTÓN INICIAR SESIÓN (Submit) */
+/* ------------------------------------- */
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d80);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+/* ------------------------------------- */
+/* SEPARADOR Y REGISTRO (EN TEXTO) */
+/* ------------------------------------- */
+
+.separator {
+    height: 1px;
+    background-color: #eee;
+    margin: 25px 0 20px 0;
+}
+
+.register-text {
+    color: #777;
+    margin-bottom: 10px;
+    font-size: 0.95rem; /* Ajuste para que se vea como texto de ayuda */
+}
+
+/* Estilo para el enlace de registro dentro del texto */
+.register-link {
+    font-weight: 700;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* ------------------------------------- */
+/* BOTÓN VOLVER (NUEVA POSICIÓN INLINE) */
+/* ------------------------------------- */
+
+.back-button-inline {
+    /* Estilos del botón */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Color de fondo claro para que resalte */
+    color: #6c757d; /* Color de texto gris oscuro */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    width: auto;
+    /* Margin para separarlo del contenido superior si es necesario (manejar con mt-3 en JSX) */
+    margin-top: 15px; 
+}
+
+.back-button-inline:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+/* ------------------------------------- */
+/* MENSAJES DE ESTADO (Éxito/Error) */
+/* ------------------------------------- */
+
+.message-box {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* --- HERO BANNER (Sección Azul Oscuro) - ESTILOS BASE (PC/DEFAULT) --- */
+
+.hero-container {
+padding-bottom: 5rem;
+}
+
+.main-banner {
+    background-color: transparent; 
+    color: white;
+    padding-top: 5rem !important; 
+    padding-bottom: 10rem !important;
+    border-radius: 0 0 20px 20px;
+}
+
+.banner-title {
+    font-size: 3rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+}
+
+.banner-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    max-width: 600px;
+}
+
+/* --- FEATURE CARDS (Tarjetas) - ESTILOS BASE (PC/DEFAULT) --- */
+
+.feature-cards-wrapper {
+    margin-top: -6rem; 
+    position: relative;
+    z-index: 10;
+}
+
+.feature-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 120px;
+    height: 100%;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+}
+
+.icon-wrapper {
+    display: inline-block;
+    padding: 10px;
+}
+
+.card-title {
+ font-size: 1.4rem;
+ font-weight: 800;
+margin-bottom: 0.5rem; 
+color: #333;
+}
+
+.card-subtitle {
+ font-size: 1rem;
+ font-weight: 400;
+margin-bottom: 0;
+color: #6c757d;
+}
+
+.card-description {
+ font-size: 1.1rem;
+font-weight: 600;
+ color: #333;
+}
+
+/* --- Estilos Específicos de Color por Tarjeta --- */
+
+/* Tarjeta 1: Consulta con IA (BLANCO con texto azul/naranja) */
+.card-ia .card-icon {
+color: #2b77c9; 
+}
+.card-ia .card-title {
+ color: #f7931e; 
+}
+
+/* Tarjeta 2: Consulta médica online (BLANCO con texto azul) */
+.card-medico {
+background-color: #ffffff; 
+color: #2b77c9; 
+}
+.card-medico .card-icon {
+color: #2b77c9; 
+}
+.card-medico .card-title, 
+.card-medico .card-description {
+color: #2b77c9; 
+}
+.card-medico .card-subtitle {
+ color: #6c757d; 
+}
+
+
+.card-envio {
+   background-color: #0056b3; 
+ color: white; 
+}
+.card-envio .card-icon {
+  color: white;
+}
+.card-envio .card-title, 
+.card-envio .card-description {
+ color: white;
+}
+.card-envio .card-subtitle {
+  color: #c7dfff; 
+}
+
+
+/* ------------------------------------- */
+/* RESPONSIVIDAD GENERAL (MOBILE FIRST) */
+/* ------------------------------------- */
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    /* --- LOGIN RESPONSIVE --- */
+    .login-container {
+        /* Asegura que el contenedor de fondo no tenga scroll innecesario en móviles */
+        padding: 10px;
+    }
+
+    .login-card {
+        padding: 30px 20px; /* Reducir padding horizontal y vertical para ahorrar espacio */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+    }
+
+    .login-title {
+        font-size: 1.75rem; /* Fuente un poco más pequeña */
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        padding: 10px 12px; /* Reducir padding de inputs */
+        font-size: 0.95rem;
+    }
+
+    .login-button {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .back-button-inline {
+        padding: 8px 15px; /* Botón de volver más compacto */
+        font-size: 0.85rem;
+    }
+
+    /* --- HERO BANNER RESPONSIVE --- */
+    .main-banner {
+        padding-top: 3rem !important; 
+        padding-bottom: 5rem !important; /* Reducir padding en móvil */
+        text-align: center; /* Centrar texto en móvil si no estaba ya */
+    }
+    
+    .banner-title {
+        font-size: 2rem; /* Reducir tamaño del título principal */
+    }
+
+    .banner-subtitle {
+        font-size: 1.1rem; /* Reducir tamaño del subtítulo */
+    }
+
+    /* --- FEATURE CARDS RESPONSIVE --- */
+    /* Cuando las tarjetas se apilan en móvil, estos ajustes las hacen más compactas */
+    .feature-cards-wrapper {
+        margin-top: -3rem; /* Reducir el margen negativo para que la tarjeta no suba tanto */
+    }
+
+    .feature-card {
+        padding: 30px; /* Reducir el padding interno de la tarjeta */
+        margin-bottom: 20px; /* Asegurar espacio entre tarjetas apiladas */
+    }
+    
+    .card-title {
+        font-size: 1.2rem;
+    }
+    
+    .card-description {
+        font-size: 1rem;
+    }
+}

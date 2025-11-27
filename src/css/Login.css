@@ -1,0 +1,233 @@
+/* ------------------------------------- */
+/* CONTENEDOR PRINCIPAL Y FONDO */
+/* ------------------------------------- */
+
+.login-container {
+    /* Fondo azul principal del sitio */
+    background-color: #2b77c9;
+    /* Asegura que ocupe toda la pantalla */
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    /* Permite posicionar elementos absolutos dentro del contenedor (aunque el botón ya no es absoluto) */
+    position: relative; 
+}
+
+/* ------------------------------------- */
+/* TARJETA DE LOGIN */
+/* ------------------------------------- */
+
+.login-card {
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.login-title {
+    color: #333;
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+}
+
+/* ------------------------------------- */
+/* FORMULARIO Y ENTRADAS */
+/* ------------------------------------- */
+
+.login-form .form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.login-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #555;
+}
+
+.login-form input {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-sizing: border-box;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.login-form input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+    outline: none;
+}
+
+/* ------------------------------------- */
+/* BOTÓN INICIAR SESIÓN (Submit) */
+/* ------------------------------------- */
+
+.login-button {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s;
+    margin-top: 10px;
+}
+
+.login-button:hover {
+    background: linear-gradient(135deg, #0056b3, #003d80);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.login-button:active {
+    transform: translateY(1px);
+}
+
+/* ------------------------------------- */
+/* SEPARADOR Y REGISTRO (EN TEXTO) */
+/* ------------------------------------- */
+
+.separator {
+    height: 1px;
+    background-color: #eee;
+    margin: 25px 0 20px 0;
+}
+
+.register-text {
+    color: #777;
+    margin-bottom: 10px;
+    font-size: 0.95rem; /* Ajuste para que se vea como texto de ayuda */
+}
+
+/* Estilo para el enlace de registro dentro del texto */
+.register-link {
+    font-weight: 700;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.register-link:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* El estilo de .register-button ha sido eliminado ya que ahora es texto/link */
+
+
+/* ------------------------------------- */
+/* BOTÓN VOLVER (NUEVA POSICIÓN INLINE) */
+/* ------------------------------------- */
+
+.back-button-inline {
+    /* Estilos del botón */
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f8f9fa; /* Color de fondo claro para que resalte */
+    color: #6c757d; /* Color de texto gris oscuro */
+    border: 1px solid #ced4da;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    width: auto;
+    /* Margin para separarlo del contenido superior si es necesario (manejar con mt-3 en JSX) */
+    margin-top: 15px; 
+}
+
+.back-button-inline:hover {
+    background-color: #e2e6ea;
+    border-color: #dae0e5;
+}
+
+/* ------------------------------------- */
+/* MENSAJES DE ESTADO (Éxito/Error) */
+/* ------------------------------------- */
+
+.message-box {
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.message-success {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+/* ------------------------------------- */
+/* RESPONSIVIDAD GENERAL (MOBILE FIRST) */
+/* ------------------------------------- */
+
+/* Ajustes para pantallas pequeñas (móviles) */
+@media (max-width: 600px) {
+    .login-container {
+        /* Asegura que el contenedor de fondo no tenga scroll innecesario en móviles */
+        padding: 10px;
+    }
+
+    .login-card {
+        padding: 30px 20px; /* Reducir padding horizontal y vertical para ahorrar espacio */
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15); /* Sombra más sutil */
+    }
+
+    .login-title {
+        font-size: 1.75rem; /* Fuente un poco más pequeña */
+        margin-bottom: 20px;
+    }
+
+    .login-form input {
+        padding: 10px 12px; /* Reducir padding de inputs */
+        font-size: 0.95rem;
+    }
+
+    .login-button {
+        padding: 10px;
+        font-size: 1rem;
+    }
+
+    .back-button-inline {
+        padding: 8px 15px; /* Botón de volver más compacto */
+        font-size: 0.85rem;
+    }
+}
+
+.back-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    padding: 8px 15px;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: background-color 0.3s, transform 0.1s;
+}
+.back-button:hover {
+    background-color: rgba(255, 255, 255, 0.4);
+}
+.back-button:active {
+    transform: scale(0.98);
+}
