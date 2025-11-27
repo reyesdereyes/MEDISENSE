@@ -1,7 +1,7 @@
 /* --- Variables de paleta de colores (tema azul/blanco) --- */
 :root {
    --primary-color: #007bff; /* Azul primario */
-   --primary-dark: #0056b3;  /* Azul más oscuro para hover/active */
+   --primary-dark: #d0e1f3; /* Azul más oscuro para hover/active */
    --secondary-color: #6c757d; /* Gris secundario */
    --background-light: #2b77c9; /* Fondo de página (azul oscuro) */
    --card-background: #ffffff; /* Fondo de tarjeta */
