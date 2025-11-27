@@ -1,7 +1,7 @@
 /* --- Variables de paleta de colores (tema azul/blanco) --- */
 :root {
   --primary-color: #007bff;
-  --primary-dark: #ffffff;
+  --primary-dark: #0056b3;
   --secondary-color: #6c757d;
   --background-light: #2b77c9;
   --card-background: #ffffff;
@@ -25,13 +25,13 @@
 /* --- Botón volver --- */
 .back-button-inline {
   background: none;
-  border: 10px;
+  border: none;
   color: var(--primary-dark);
   cursor: pointer;
   align-self: flex-start;
   margin-bottom: 20px;
   font-size: 1rem;
-  font-weight: 00;
+  font-weight: 600;
   transition: color 0.3s;
   margin-bottom: 10%;
 }
