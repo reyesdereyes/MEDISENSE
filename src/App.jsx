@@ -3,7 +3,8 @@ import Header from './components/Header.jsx'; // Importación corregida en App.j
 import './App.css';
 import Inicio from './pages/Inicio.jsx';
 import Login from './pages/Login.jsx'; 
-import Registro from './pages/Registro.jsx'; 
+import Registro from './pages/registro.jsx';
+
 
 function App() {
   return (
