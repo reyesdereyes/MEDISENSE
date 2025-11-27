@@ -525,3 +525,28 @@ nav {
         padding: 6px 12px;
     }
 }
+
+@media (max-width: 600px) {
+  .search-input-wrapper {
+    right: 10px;
+  }
+
+  .search-input-wrapper.visible {
+    width: 150px;
+  }
+
+  .search-input {
+    padding: 6px 12px;
+  }
+  
+  .creative-button {
+    padding: 8px 15px;
+    font-size: 0.85rem;
+  }
+
+  nav {
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px 0;
+  }
+}

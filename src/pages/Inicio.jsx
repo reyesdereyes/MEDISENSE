@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react' 
+import Header from '../components/Header.jsx'
+import FeatureCard from '../components/FeatureCard.jsx'
+import { GiBrain } from 'react-icons/gi'
 
 function Inicio() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
