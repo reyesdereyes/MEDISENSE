@@ -1,46 +1,50 @@
-import { useState } from 'react'
-// RUTA CORREGIDA: Usamos '../' para acceder a la carpeta 'components' desde 'pages'
-import Header from '../components/Header.jsx'
-import FeatureCard from '../components/FeatureCard.jsx'
-import '../App.css'
-
-// IMPORTACIONES DE ICONOS
-import { GiBrain, GiAmbulance } from 'react-icons/gi'; 
-import { FaUserMd } from 'react-icons/fa'; 
+import { useState, useEffect } from 'react'
 
 function Inicio() {
-  const [count, setCount] = useState(0)
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth)
+  
+  useEffect(() => {
+    const handleResize = () => setWindowWidth(window.innerWidth)
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
-  // 1. Estilos para el banner grande
+  // Estilos adaptativos para banner basado en el ancho
   const bannerStyle = {
-    backgroundColor: 'transparent', 
+    backgroundColor: 'transparent',
     color: 'white',
-    // Reducimos el paddingTop para acercar el contenido al Header
-    paddingTop: '3rem', 
-    paddingBottom: '12rem', 
+    paddingTop: windowWidth < 768 ? '1.5rem' : '3rem',
+    paddingBottom: windowWidth < 768 ? '4rem' : '12rem',
     borderRadius: '0 0 20px 20px',
-    marginTop: '0', 
-  };
+    marginTop: '0',
+    textAlign: 'center',
+  }
 
+  // Título adaptativo
   const titleStyle = {
-    fontSize: '5rem', 
+    fontSize: windowWidth < 768 ? '2.5rem' : '5rem',
     fontWeight: '800',
     marginBottom: '1rem',
   };
 
+  // Subtítulo adaptable
   const subtitleStyle = {
-    fontSize: '2rem', 
+    fontSize: windowWidth < 768 ? '1.2rem' : '2rem',
     fontWeight: '400',
-    maxWidth: '700px',
+    maxWidth: windowWidth < 768 ? '90vw' : '700px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
   };
+
+  // Para las tarjetas, se recomienda en móviles que ocupen 100% ancho con margen abajo
+  // ese estilo debe estar en el FeatureCard o container, se podría controlar pasando props
 
   return (
     <>
-     \<Header />
+      <Header />
 
-      {/* --- SECCIÓN DE BIENVENIDA (BANNER) --- */}
-      <div className="hero-container bg-primary-dark"> {/* Añadí la clase de color */}
-        <div className="text-center" style={bannerStyle}> 
+      <div className="hero-container bg-primary-dark" style={bannerStyle}>
+        <div style={{ width: '100%' }}>
           <h1 className="display-4" style={titleStyle}>
             Bienvenido a <strong>MEDISENSE</strong>
           </h1>
@@ -49,20 +53,15 @@ function Inicio() {
           </p>
         </div>
 
-        {/* --- SECCIÓN DE TARJETAS (FEATURE CARDS) --- */}
         <div className="container feature-cards-wrapper mt-n5 position-relative z-index-3">
           <div className="row justify-content-center">
-
-            {/* Tarjeta 1: Consulta con IA */}
             <FeatureCard
-                icon={GiBrain} 
-                title="Consulta con IA"
-                subtitle="Obtén un diagnóstico con"
-                description="Inteligencia artificial"
-                // Añadí la clase específica para aplicar estilos de color
-                cardClass="bg-white shadow-lg border-0 h-100 p-4 card-ia col-lg-4 col-md-6 mb-4" 
+              icon={GiBrain}
+              title="Consulta con IA"
+              subtitle="Obtén un diagnóstico con"
+              description="Inteligencia artificial"
+              cardClass={`bg-white shadow-lg border-0 h-100 p-4 card-ia col-lg-4 col-md-6 mb-4 ${windowWidth < 768 ? 'col-12' : ''}`}
             />
-            
           </div>
         </div>
       </div>
