@@ -1,193 +1,196 @@
-/* --- Paleta de Colores (Ajustada al tema azul/blanco) --- */
+/* --- Variables de paleta de colores (tema azul/blanco) --- */
 :root {
-    --primary-color: #007bff; /* Azul primario */
-    --primary-dark: #0056b3;    /* Azul más oscuro para hover/active */
-    --secondary-color: #6c757d; /* Gris secundario */
-    --background-light: #f4f7f6; /* Fondo de página */
-    --card-background: #ffffff; /* Fondo de tarjeta */
-    --text-color: #333333;
-    --border-color: #ced4da;
-    --success-color: #28a745;
-    --error-color: #dc3545;
+  --primary-color: #007bff;
+  --primary-dark: #ffffff;
+  --secondary-color: #6c757d;
+  --background-light: #2b77c9;
+  --card-background: #ffffff;
+  --text-color: #333333;
+  --border-color: #ced4da;
+  --success-color: #28a745;
+  --error-color: #dc3545;
 }
 
-/* -------------------- GENERAL -------------------- */
+/* --- Contenedor general del registro --- */
 .register-container {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--background-light);
-    padding: 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--background-light);
+  padding: 20px;
 }
 
-/* Botón Volver (Estilo similar al del Login, pero ajustado a la posición) */
+/* --- Botón volver --- */
 .back-button-inline {
-    background: none;
-    border: none;
-    color: var(--primary-dark);
-    cursor: pointer;
-    align-self: flex-start; /* Se alinea a la izquierda del contenedor flex */
-    margin-bottom: 20px;
-    font-size: 1rem;
-    font-weight: 600;
-    transition: color 0.3s;
+  background: none;
+  border: 10px;
+  color: var(--primary-dark);
+  cursor: pointer;
+  align-self: flex-start;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: 00;
+  transition: color 0.3s;
+  margin-bottom: 10%;
 }
 .back-button-inline:hover {
-    color: var(--primary-color);
+  color: var(--primary-color);
 }
 
-/* -------------------- TARJETA DE REGISTRO -------------------- */
+/* --- Tarjeta de registro --- */
 .register-card {
-    background-color: var(--card-background);
-    padding: 40px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 450px; /* Un poco más ancha que Login para campos adicionales */
-    text-align: center;
-    transition: all 0.3s ease-in-out;
+  background-color: var(--card-background);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
 }
 
+/* --- Título del registro --- */
 .register-title {
-    color: var(--primary-color);
-    margin-bottom: 30px;
-    font-size: 2rem;
-    font-weight: 700;
+  color: var(--primary-color);
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
 }
 
-/* -------------------- FORMULARIO -------------------- */
+/* --- Formulario --- */
 .register-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .form-group {
-    text-align: left;
+  text-align: left;
 }
 
 .form-group label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: 600;
-    color: var(--text-color);
-    font-size: 0.95rem;
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
 }
 
 .form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border-color);
-    border-radius: 8px;
-    box-sizing: border-box;
-    font-size: 1rem;
-    transition: border-color 0.3s, box-shadow 0.3s;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  box-sizing: border-box;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .form-group input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
-    outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+  outline: none;
 }
 
-/* Botón de Registro Principal */
+/* --- Botón de registro principal --- */
 .register-button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-top: 20px;
-    transition: background-color 0.3s, transform 0.1s;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.1s;
 }
 
 .register-button:hover {
-    background-color: var(--primary-dark);
-    transform: translateY(-1px);
+  background-color: var(--primary-dark);
+  transform: translateY(-1px);
 }
 
 .register-button:active {
-    transform: translateY(0);
+  transform: translateY(0);
 }
 
-/* -------------------- SEPARADOR Y LOGIN -------------------- */
+/* --- Separador y texto de login --- */
 .separator {
-    height: 1px;
-    background-color: var(--border-color);
-    margin: 30px 0;
+  height: 1px;
+  background-color: var(--border-color);
+  margin: 30px 0;
 }
 
 .login-text {
-    color: var(--secondary-color);
-    margin-bottom: 15px;
-    font-size: 0.95rem;
+  color: var(--secondary-color);
+  margin-bottom: 15px;
+  font-size: 0.95rem;
 }
 
-/* Enlace/Botón a Iniciar Sesión */
+/* --- Enlace/botón iniciar sesión --- */
 .login-button-link {
-    display: block;
-    width: 100%;
-    padding: 10px;
-    background-color: var(--secondary-color);
-    color: white;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: background-color 0.3s;
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s;
 }
 
 .login-button-link:hover {
-    background-color: #5a6268;
+  background-color: #5a6268;
 }
 
-/* -------------------- MENSAJES DE ESTADO -------------------- */
+/* --- Mensajes de estado --- */
 .message-box {
-    padding: 10px 20px;
-    margin-bottom: 20px;
-    border-radius: 8px;
-    font-weight: 600;
-    width: 100%;
-    max-width: 450px;
-    text-align: center;
-    animation: fadeIn 0.5s ease-out;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  width: 100%;
+  max-width: 450px;
+  text-align: center;
+  animation: fadeIn 0.5s ease-out;
 }
 
 .message-success {
-    background-color: #d4edda;
-    color: var(--success-color);
-    border: 1px solid var(--success-color);
+  background-color: #d4edda;
+  color: var(--success-color);
+  border: 1px solid var(--success-color);
 }
 
 .message-error {
-    background-color: #f8d7da;
-    color: var(--error-color);
-    border: 1px solid var(--error-color);
+  background-color: #f8d7da;
+  color: var(--error-color);
+  border: 1px solid var(--error-color);
 }
 
+/* --- Animación fadeIn --- */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(-10px);}
+  to { opacity: 1; transform: translateY(0);}
 }
 
-/* -------------------- RESPONSIVE -------------------- */
+/* --- Responsivo para móvil --- */
 @media (max-width: 500px) {
-    .register-card {
-        padding: 25px;
-        border-radius: 0; /* Sin bordes redondeados en móvil */
-        box-shadow: none;
-    }
+  .register-card {
+    padding: 25px;
+    border-radius: 0;
+    box-shadow: none;
+  }
 
-    .register-title {
-        font-size: 1.75rem;
-    }
+  .register-title {
+    font-size: 1.75rem;
+  }
 
-    .register-container {
-        padding: 0;
-        background-color: var(--card-background); /* Fondo blanco en móvil */
-    }
+  .register-container {
+    padding: 0;
+    background-color: var(--card-background);
+  }
 }
