@@ -48,9 +48,9 @@ const Header = () => {
             </Link>
             
             {/* Botón 2: Registrarse - Nuevo estilo 'creative-button' */}
-            <button className="creative-button secondary" type="button"> 
+            <Link to="/registro"  className="creative-button secondary" type="button"> 
               Registrarse
-            </button>
+            </Link>
           </div>
           
           {/* ÍCONO DE LUPA/CERRAR - Ahora es funcional */}

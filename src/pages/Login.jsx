@@ -74,7 +74,7 @@ const Login = () => {
           ¿Aún no tienes cuenta?
         </p>
         {/* Usamos Link para navegar a la página de registro (debes crearla) */}
-        <Link to="/register" className="register-button">
+        <Link to="/registro" className="register-button">
           Registrarse
         </Link>
       </div>

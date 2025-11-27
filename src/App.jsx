@@ -2,7 +2,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/Header.jsx'; // Importación corregida en App.jsx
 import './App.css';
 import Inicio from './pages/Inicio.jsx';
-import Login from './pages/Login.jsx';  
+import Login from './pages/Login.jsx'; 
+import Registro from './pages/Registro.jsx'; 
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
             {/* Ruta de inicio */}
             <Route path="/" element={<Inicio/>} /> 
             <Route path="/login" element={<Login/>} />
+            <Route path="/registro" element={<Registro/>} />
             {/* Aquí agregarías más rutas: /medicos, /consulta-ia, etc. */}
         </Routes>
     </BrowserRouter>
