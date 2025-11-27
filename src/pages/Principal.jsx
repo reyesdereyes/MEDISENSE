@@ -3,7 +3,7 @@ import Header from '../components/Header.jsx'
 import FeatureCard from '../components/FeatureCard.jsx'
 import { GiBrain } from 'react-icons/gi'
 
-function Inicio() {
+function Principal() {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth)
   
   useEffect(() => {
@@ -72,4 +72,4 @@ function Inicio() {
   )
 }
 
-export default Inicio
+export default Principal

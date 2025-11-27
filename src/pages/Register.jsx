@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../css/Registro.css'; // LA RUTA AHORA DEBERÍA RESOLVERSE
 
-const Registro = () => {
+const Register = () => {
     // Estado para capturar los valores del formulario
     const [fullName, setFullName] = useState('');
     const [email, setEmail] = useState('');
@@ -132,4 +132,4 @@ const Registro = () => {
     );
 };
 
-export default Registro;
+export default Register;
