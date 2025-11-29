@@ -1,21 +1,23 @@
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import { createClient } from '@supabase/supabase-js';
+import supabase from "../supabase/supabase";
 import "../css/Registro.css";
-
-// Inicializa Supabase con tu URL y Key públicos (usa variables de entorno)
-const supabaseUrl = "TU_SUPABASE_URL";
-const supabaseAnonKey = "TU_SUPABASE_ANON_KEY";
-const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const Register = () => {
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
+
+  // Nuevos campos opcionales
+  const [cedula, setCedula] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+
+  // Seguridad y UI
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
   const [messageType, setMessageType] = useState("");
+
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
@@ -28,13 +30,17 @@ const Register = () => {
       setMessageType("error");
       return;
     }
+
     if (!username.trim()) {
       setMessage("El nombre de usuario es requerido.");
       setMessageType("error");
       return;
     }
 
-    // Crear usuario en Supabase Auth
+    const cleanCedula = cedula.trim() || null;
+    const cleanPhone = phoneNumber.trim() || null;
+
+    // Crear usuario en Auth
     const { data, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
@@ -46,35 +52,51 @@ const Register = () => {
       return;
     }
 
-    // Insertar perfil en tabla profiles con user.id y datos adicionales
+    if (!data.user) {
+      setMessage(
+        "Registro exitoso. Revisa tu correo para verificar tu cuenta."
+      );
+      setMessageType("success");
+      setTimeout(() => navigate("/login"), 3000);
+      return;
+    }
+
+    // Insertar perfil en tabla
     const userId = data.user.id;
+
     const { error: profileError } = await supabase.from("profiles").insert([
       {
         id: userId,
         full_name: fullName,
         username: username.trim(),
+        email,
+        cedula: cleanCedula,
+        phone_number: cleanPhone,
       },
     ]);
 
     if (profileError) {
-      setMessage(`Error guardando perfil: ${profileError.message}`);
+      setMessage(
+        `Error guardando perfil. Contacta soporte. ${profileError.message}`
+      );
       setMessageType("error");
       return;
     }
 
-    setMessage("Registro exitoso. Redirigiendo a Login...");
+    setMessage("Registro exitoso. Redirigiendo...");
     setMessageType("success");
-    setTimeout(() => {
-      navigate("/login");
-    }, 2000);
+    setTimeout(() => navigate("/"), 2000);
   };
 
   return (
     <div className="register-container">
+
+      {/* Botón atrás */}
       <button onClick={() => navigate(-1)} className="back-button-inline">
         &larr; Volver
       </button>
 
+      {/* Mensaje dinámico */}
       {message && (
         <div
           className={`message-box ${
@@ -89,6 +111,7 @@ const Register = () => {
         <h2 className="register-title">Crear Cuenta</h2>
 
         <form onSubmit={handleRegister} className="register-form">
+
           <div className="form-group">
             <label htmlFor="fullName">Nombre Completo</label>
             <input
@@ -108,20 +131,42 @@ const Register = () => {
               id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-              placeholder="Nombre único de usuario"
+              placeholder="Usuario único"
               required
             />
           </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="email">Correo Electrónico</label>
             <input
               type="email"
               id="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="Tu correo electrónico"
+              placeholder="correo@ejemplo.com"
               required
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="cedula">Cédula (Opcional)</label>
+            <input
+              type="text"
+              id="cedula"
+              value={cedula}
+              onChange={(e) => setCedula(e.target.value)}
+              placeholder="Número de identificación"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="phoneNumber">Teléfono (Opcional)</label>
+            <input
+              type="tel"
+              id="phoneNumber"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="Ej: +58 412 1234567"
             />
           </div>
 
@@ -132,7 +177,7 @@ const Register = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Crea tu contraseña segura"
+              placeholder="Crea una contraseña segura"
               required
             />
           </div>
@@ -144,7 +189,7 @@ const Register = () => {
               id="confirmPassword"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
-              placeholder="Repite tu contraseña"
+              placeholder="Repite la contraseña"
               required
             />
           </div>

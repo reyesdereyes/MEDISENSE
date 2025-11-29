@@ -1,222 +1,258 @@
-/* --- Variables de paleta de colores (tema azul/blanco) --- */
+/* -----------------------------------
+   🎨 PALETA (Tema Azul Profesional)
+----------------------------------- */
 :root {
-   --primary-color: #007bff; /* Azul primario */
-   --primary-dark: #d0e1f3; /* Azul más oscuro para hover/active */
-   --secondary-color: #6c757d; /* Gris secundario */
-   --background-light: #2b77c9; /* Fondo de página (azul oscuro) */
-   --card-background: #ffffff; /* Fondo de tarjeta */
-   --text-color: #333333;
-   --border-color: #ced4da;
+   --primary-color: #007bff;
+   --primary-hover: #006ae6;
+   --primary-light: #d7e9ff;
+
+   --secondary-color: #6c757d;
+
+   --background-page: #2b77c9;
+
+   --card-bg: #ffffff;
+   --text-color: #333;
+   --border-color: #d3d9dd;
+
    --success-color: #28a745;
    --error-color: #dc3545;
 }
 
-/* --- Contenedor general del registro --- */
+/* -----------------------------------
+   🖼️ CONTENEDOR GENERAL
+----------------------------------- */
 .register-container {
    min-height: 100vh;
    display: flex;
    flex-direction: column;
    justify-content: center;
    align-items: center;
-   background-color: var(--background-light);
+   background: linear-gradient(135deg, #2b77c9, #0057b8);
    padding: 20px;
+   animation: fadeBg 1s ease-in-out;
 }
 
-/* -------------------- BOTÓN VOLVER (MEJORADO) -------------------- */
+/* -----------------------------------
+   ⬅️ BOTÓN VOLVER
+----------------------------------- */
 .back-button-inline {
    display: inline-flex;
    align-items: center;
    justify-content: center;
-   padding: 10px 15px; 
-   background-color: var(--card-background); /* Fondo blanco limpio */
-   color: var(--primary-color); /* Color primario para el texto */
+   padding: 8px 14px;
+   background-color: var(--card-bg);
+   color: var(--primary-color);
    border: 1px solid var(--primary-color);
-   border-radius: 20px; /* Estilo 'pastilla' */
-   font-size: 0.9rem;
+   border-radius: 18px;
+   font-size: 0.85rem;
    font-weight: 600;
    cursor: pointer;
-   transition: all 0.3s ease;
-   text-decoration: none; 
-   
-   
-   /* Posicionamiento y márgenes */
-   align-self: flex-start; /* Alineado a la izquierda dentro del contenedor flex */
-   margin-bottom: 120px; 
-   
-   /* Sombra sutil para un toque profesional */
-   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+   transition: all 0.25s ease;
+   text-decoration: none;
+   align-self: flex-start;
+   margin-bottom: 40px;
+   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
 
 .back-button-inline:hover {
    background-color: var(--primary-color);
    color: white;
-   border-color: var(--primary-dark);
-   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .back-button-inline:active {
-   transform: scale(0.98);
+   transform: scale(0.97);
 }
 
-
-/* --- Tarjeta de registro --- */
+/* -----------------------------------
+   📦 TARJETA DEL FORMULARIO
+----------------------------------- */
 .register-card {
-   background-color: var(--card-background);
-   padding: 40px;
-   border-radius: 12px;
-   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
    width: 100%;
-   max-width: 450px;
-   text-align: center;
-   transition: all 0.3s ease-in-out;
+   max-width: 420px;
+   background: var(--card-bg);
+   padding: 28px;
+   border-radius: 14px;
+   box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+   transition: 0.4s ease;
+   animation: cardFade 0.6s ease-out;
 }
 
-/* --- Título del registro --- */
+.register-card:hover {
+   transform: translateY(-2px);
+}
+
+/* -----------------------------------
+   🔵 TÍTULO
+----------------------------------- */
 .register-title {
    color: var(--primary-color);
-   margin-bottom: 30px;
-   font-size: 2rem;
+   margin-bottom: 22px;
+   font-size: 1.8rem;
    font-weight: 700;
 }
 
-/* --- Formulario --- */
+/* -----------------------------------
+   📝 FORMULARIO
+----------------------------------- */
 .register-form {
    display: flex;
    flex-direction: column;
-   gap: 15px;
-}
-
-.form-group {
-   text-align: left;
+   gap: 12px; /* MÁS COMPACTO */
 }
 
 .form-group label {
-   display: block;
-   margin-bottom: 5px;
+   font-size: 0.9rem;
    font-weight: 600;
-   color: var(--text-color);
-   font-size: 0.95rem;
+   color: #444;
+   margin-bottom: 4px;
 }
 
 .form-group input {
    width: 100%;
-   padding: 12px;
+   padding: 11px;
    border: 1px solid var(--border-color);
-   border-radius: 8px;
-   box-sizing: border-box;
-   font-size: 1rem;
-   transition: border-color 0.3s, box-shadow 0.3s;
+   border-radius: 10px;
+   font-size: 0.95rem;
+   background: #f9f9f9;
+   transition: 0.25s ease;
+}
+
+.form-group input:hover {
+   background: #fff;
 }
 
 .form-group input:focus {
    border-color: var(--primary-color);
-   box-shadow: 0 0 0 3px rgba(0,123,255,0.2);
+   background: #fff;
+   box-shadow: 0 0 0 3px rgba(0,123,255,0.18);
    outline: none;
 }
 
-/* --- Botón de registro principal --- */
+/* -----------------------------------
+   🔵 BOTÓN REGISTRARSE
+----------------------------------- */
 .register-button {
-   background-color: var(--primary-color);
+   width: 100%;
+   padding: 13px;
+   margin-top: 10px;
+   background: var(--primary-color);
    color: white;
    border: none;
-   padding: 14px;
-   border-radius: 8px;
-   cursor: pointer;
-   font-size: 1.1rem;
+   border-radius: 10px;
+   font-size: 1.05rem;
    font-weight: 700;
-   margin-top: 20px;
-   transition: background-color 0.3s, transform 0.1s;
+   cursor: pointer;
+   transition: 0.3s ease;
 }
 
 .register-button:hover {
-   background-color: var(--primary-dark);
+   background: var(--primary-hover);
    transform: translateY(-1px);
 }
 
 .register-button:active {
-   transform: translateY(0);
+   transform: scale(0.98);
 }
 
-/* --- Separador y texto de login --- */
+/* -----------------------------------
+   ➖ SEPARADOR
+----------------------------------- */
 .separator {
    height: 1px;
-   background-color: var(--border-color);
-   margin: 30px 0;
+   background: var(--border-color);
+   margin: 25px 0;
 }
 
+/* -----------------------------------
+   🔗 LOGIN
+----------------------------------- */
 .login-text {
    color: var(--secondary-color);
-   margin-bottom: 15px;
-   font-size: 0.95rem;
+   font-size: 0.9rem;
+   margin-bottom: 10px;
 }
 
-/* --- Enlace/botón iniciar sesión --- */
 .login-button-link {
    display: block;
    width: 100%;
    padding: 10px;
-   background-color: var(--secondary-color);
+   background: var(--secondary-color);
    color: white;
-   border-radius: 8px;
    text-decoration: none;
+   border-radius: 10px;
    font-weight: 600;
-   transition: background-color 0.3s;
+   transition: 0.25s;
 }
 
 .login-button-link:hover {
-   background-color: #5a6268;
+   background: #5a6268;
 }
 
-/* --- Mensajes de estado --- */
+/* -----------------------------------
+   📢 MENSAJES: ÉXITO / ERROR
+----------------------------------- */
 .message-box {
-   padding: 10px 20px;
-   margin-bottom: 20px;
-   border-radius: 8px;
+   padding: 12px 20px;
+   margin-bottom: 18px;
+   border-radius: 10px;
    font-weight: 600;
    width: 100%;
    max-width: 450px;
    text-align: center;
    animation: fadeIn 0.5s ease-out;
+   border: 1px solid transparent;
 }
 
 .message-success {
-   background-color: #d4edda;
+   background: #e8f9ee;
    color: var(--success-color);
-   border: 1px solid var(--success-color);
+   border-color: var(--success-color);
 }
 
 .message-error {
-   background-color: #f8d7da;
+   background: #fce8e8;
    color: var(--error-color);
-   border: 1px solid var(--error-color);
+   border-color: var(--error-color);
 }
 
-/* --- Animación fadeIn --- */
+/* -----------------------------------
+   🎬 ANIMACIONES
+----------------------------------- */
 @keyframes fadeIn {
-   from { opacity: 0; transform: translateY(-10px);}
-   to { opacity: 1; transform: translateY(0);}
+   from { opacity: 0; transform: translateY(-8px); }
+   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Responsivo para móvil --- */
+@keyframes cardFade {
+   from { opacity: 0; transform: translateY(10px);}
+   to   { opacity: 1; transform: translateY(0);}
+}
+
+@keyframes fadeBg {
+   from { opacity: 0; }
+   to   { opacity: 1; }
+}
+
+/* -----------------------------------
+   📱 RESPONSIVE
+----------------------------------- */
 @media (max-width: 500px) {
    .back-button-inline {
-      /* En móvil, sigue flotando a la izquierda pero le damos un margen lateral */
-      margin: 15px 20px; 
-      align-self: flex-start; 
+      margin: 10px 0 30px 0;
+      padding: 7px 12px;
    }
 
    .register-card {
-      padding: 25px;
-      border-radius: 0;
-      box-shadow: none;
+      padding: 22px;
+      border-radius: 10px;
+      max-width: 350px;
    }
 
    .register-title {
-      font-size: 1.75rem;
+      font-size: 1.6rem;
    }
 
    .register-container {
-      padding: 0;
-      background-color: var(--card-background);
+      padding: 10px;
    }
 }
