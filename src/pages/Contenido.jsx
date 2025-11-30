@@ -1,7 +1,7 @@
 import React from 'react'
 import Header2 from '../components/Header2.jsx' 
 
-const conte = () => {
+const Contenido = () => {
   return (
     <>
 
@@ -11,4 +11,4 @@ const conte = () => {
   )
 }
 
-export default conte
+export default Contenido

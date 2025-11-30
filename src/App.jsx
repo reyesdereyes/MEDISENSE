@@ -3,6 +3,7 @@ import './App.css';
 import Login from './pages/Login.jsx'; 
 import Principal from './pages/Principal.jsx';
 import Register from './pages/Register.jsx';
+import Contenido from './pages/Contenido.jsx';
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<Principal />} /> 
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
+        <Route path="/MEDISENSE" element={<Contenido/>} />
       
       </Routes>
     </>
