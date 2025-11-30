@@ -1,4 +1,3 @@
-import React from 'react';
 import { Card } from 'primereact/card';
 // Importaciones de estilos necesarias
 import 'primereact/resources/themes/saga-blue/theme.css'; 
