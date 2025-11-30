@@ -22,29 +22,44 @@ const Login = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // Validación de campos
     if (!email || !password) {
       setMessage("Por favor completa todos los campos.");
       setType("error");
       return;
     }
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-
-    if (error) {
-      setMessage("Credenciales incorrectas.");
+    if (!/\S+@\S+\.\S+/.test(email)) {
+      setMessage("Correo inválido.");
       setType("error");
       return;
     }
 
-    setMessage("Inicio de sesión exitoso.");
-    setType("success");
+    try {
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
 
-    setTimeout(() => {
-      window.location.href = "/MEDISENSE";
-    }, 800);
+      if (error) {
+        console.error("Login error:", error);
+        setMessage(error.message);
+        setType("error");
+        return;
+      }
+
+      if (data.session) {
+        setMessage("Inicio de sesión exitoso.");
+        setType("success");
+        setTimeout(() => {
+          window.location.href = "/MEDISENSE";
+        }, 800);
+      }
+    } catch (err) {
+      console.error("Error inesperado:", err);
+      setMessage("Error de conexión con el servidor.");
+      setType("error");
+    }
   };
 
   return (
@@ -102,9 +117,7 @@ const Login = () => {
           font-weight: 600;
           transition: .3s;
         }
-        .btn:hover {
-          background: #0c9c6f;
-        }
+        .btn:hover { background: #0c9c6f; }
         .msg {
           padding: 12px;
           border-radius: 8px;
@@ -133,11 +146,7 @@ const Login = () => {
       <div className="card">
         <h2 className="title">Iniciar Sesión</h2>
 
-        {message && (
-          <div className={`msg ${type}`}>
-            {message}
-          </div>
-        )}
+        {message && <div className={`msg ${type}`}>{message}</div>}
 
         <form onSubmit={handleLogin}>
           <input
