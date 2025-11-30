@@ -52,7 +52,7 @@ const Login = () => {
         setMessage("Inicio de sesión exitoso.");
         setType("success");
         setTimeout(() => {
-          window.location.href = "/contenido";
+          window.location.href = "/MEDISENSE";
         }, 800);
       }
     } catch (err) {
