@@ -1,0 +1,153 @@
+/* ======== CONTENEDOR GENERAL ======== */
+.medisense-page {
+    background-color: #f6f8fc;
+    padding-bottom: 4rem;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ======== SECCIÓN SUPERIOR (TÍTULO + PÁRRAFO) ======== */
+.header-section {
+    max-width: 950px;
+    margin: 0 auto 1.5rem auto;
+    text-align: center; /* Centrado en todas las pantallas */
+}
+
+.header-section h1 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #1a1a1a;
+}
+
+.header-section .header-p {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #4d4d4d;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* ====== SECCIÓN TARJETAS ====== */
+.features-section {
+    max-width: 950px;
+    margin: 0 auto;
+}
+
+/* Col contenedora de cada card */
+/* Usamos p-col-12 p-md-6 p-lg-4 para la disposición en 3 columnas en desktop, 2 en tablet y 1 en móvil */
+.feature-col {
+    width: 100%;
+}
+
+/* ====== TARJETA (SIEMPRE VERTICAL) ====== */
+.feature-card {
+    /* Estilos de PrimeReact sobreescritos */
+    padding: 1.5rem !important; 
+    background: #ffffff !important;
+    border-radius: 16px !important;
+    border: 1px solid #e4e4e4 !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+
+    /* Configuración Flexbox Vertical */
+    display: flex;
+    flex-direction: column; /* FORZAMOS VERTICALIDAD EN TODAS LAS PANTALLAS */
+    align-items: center; /* Centra el contenido horizontalmente */
+    
+    transition: 0.25s ease;
+    height: 100%;
+}
+
+.feature-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+/* Sobreescribimos el padding interno de PrimeReact */
+.feature-card .p-card-body, .feature-card .p-card-content {
+    padding: 0 !important;
+    width: 100%;
+    text-align: center; /* Asegura que el texto esté centrado si la Card lo permite */
+}
+
+/* ICONO */
+.card-icon-wrapper {
+    margin-bottom: 1rem; /* Separación entre el icono y el título */
+}
+
+.icon-xl {
+    font-size: 3.2rem;
+    color: #ff8c00;
+}
+
+/* CONTENIDO TEXTO */
+.feature-content {
+    flex: 1;
+    text-align: center; /* Centrado del texto */
+}
+
+.feature-content .p-card-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin: 0 0 0.4rem 0;
+    color: #1d1d1d;
+}
+
+.feature-content p {
+    font-size: 0.98rem;
+    color: #555;
+    line-height: 1.45;
+    margin: 0;
+}
+
+/* ======== DIFERENCIADORES CLAVE ======== */
+.diferenciadores-section {
+    margin-top: 2rem;
+    padding: 2rem 0;
+    max-width: 950px;
+    margin-left: auto;
+    margin-right: auto;
+    /* Dejamos text-align: left, como en la imagen */
+}
+
+.diferenciaciones-title {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #1b1b1b;
+}
+
+.diferenciaciones-list {
+    list-style: none;
+    padding-left: 0;
+    line-height: 2;
+    font-size: 1.15rem;
+}
+
+.diferenciaciones-list li i {
+    margin-right: 0.4rem;
+    font-size: 1.2rem;
+}
+
+.diferenciaciones-list li {
+    font-weight: 600;
+    color: #333;
+}
+
+/* ======== RESPONSIVE (Ajustamos solo el tamaño de fuente y padding en móvil) ======== */
+@media (max-width: 660px) {
+    .feature-card {
+        padding: 1.2rem 1rem !important;
+    }
+
+    .icon-xl {
+        font-size: 2.5rem;
+    }
+
+    .feature-content .p-card-title {
+        font-size: 1.15rem;
+    }
+
+    .feature-content p {
+        font-size: 0.9rem;
+    }
+}
