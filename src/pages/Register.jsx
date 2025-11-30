@@ -4,15 +4,12 @@ import supabase from "../supabase/supabase";
 import "../css/Registro.css";
 
 const Register = () => {
+  // Estados
   const [fullName, setFullName] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-
-  // Nuevos campos opcionales
   const [cedula, setCedula] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-
-  // Seguridad y UI
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [message, setMessage] = useState("");
@@ -25,8 +22,9 @@ const Register = () => {
     setMessage("");
     setMessageType("");
 
-    if (password !== confirmPassword) {
-      setMessage("Las contraseñas no coinciden.");
+    // Validaciones previas
+    if (!fullName.trim()) {
+      setMessage("El nombre completo es requerido.");
       setMessageType("error");
       return;
     }
@@ -37,66 +35,106 @@ const Register = () => {
       return;
     }
 
+    if (password !== confirmPassword) {
+      setMessage("Las contraseñas no coinciden.");
+      setMessageType("error");
+      return;
+    }
+
+    // Validar formato de Email
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setMessage("Por favor, ingresa un formato de correo electrónico válido.");
+      setMessageType("error");
+      return;
+    }
+
+    // Validar longitud mínima de Contraseña
+    if (password.length < 6) {
+      setMessage("La contraseña debe tener al menos 6 caracteres.");
+      setMessageType("error");
+      return;
+    }
+
     const cleanCedula = cedula.trim() || null;
     const cleanPhone = phoneNumber.trim() || null;
 
-    // Crear usuario en Auth
-    const { data, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
+    try {
+      // 1. Verificar duplicado de username
+      const { data: existingUser } = await supabase
+        .from("profiles")
+        .select("id")
+        .eq("username", username.trim())
+        .single();
 
-    if (signUpError) {
-      setMessage(`Error en registro: ${signUpError.message}`);
-      setMessageType("error");
-      return;
-    }
+      if (existingUser) {
+        setMessage("Ese nombre de usuario ya está en uso.");
+        setMessageType("error");
+        return;
+      }
 
-    if (!data.user) {
-      setMessage(
-        "Registro exitoso. Revisa tu correo para verificar tu cuenta."
-      );
-      setMessageType("success");
-      setTimeout(() => navigate("/login"), 3000);
-      return;
-    }
-
-    // Insertar perfil en tabla
-    const userId = data.user.id;
-
-    const { error: profileError } = await supabase.from("profiles").insert([
-      {
-        id: userId,
-        full_name: fullName,
-        username: username.trim(),
+      // 2. Crear usuario en Auth
+      const { data, error: signUpError } = await supabase.auth.signUp({
         email,
-        cedula: cleanCedula,
-        phone_number: cleanPhone,
-      },
-    ]);
+        password,
+      });
 
-    if (profileError) {
-      setMessage(
-        `Error guardando perfil. Contacta soporte. ${profileError.message}`
-      );
+      if (signUpError) {
+        console.error("Error en registro:", signUpError.message);
+        setMessage(`Error en registro: ${signUpError.message}`);
+        setMessageType("error");
+        return;
+      }
+
+      // Caso A: Confirmación de correo activada
+      if (!data.user) {
+        setMessage(
+          "Registro exitoso. Revisa tu correo para verificar tu cuenta e iniciar sesión."
+        );
+        setMessageType("success");
+        setTimeout(() => navigate("/login"), 3000);
+        return;
+      }
+
+      // Caso B: Confirmación desactivada → insertar perfil
+      const userId = data.user.id;
+
+      const { error: profileError } = await supabase.from("profiles").insert([
+        {
+          id: userId,
+          full_name: fullName.trim(),
+          username: username.trim(),
+          email,
+          cedula: cleanCedula,
+          phone_number: cleanPhone,
+        },
+      ]);
+
+      if (profileError) {
+        console.error("Error guardando perfil:", profileError.message);
+        setMessage(
+          `Error guardando perfil. Contacta soporte. ${profileError.message}`
+        );
+        setMessageType("error");
+        return;
+      }
+
+      setMessage("✔ Registro y sesión iniciada exitosos. Redirigiendo...");
+      setMessageType("success");
+      setTimeout(() => navigate("/"), 2000);
+
+    } catch (err) {
+      console.error("Error inesperado en registro:", err);
+      setMessage("Ocurrió un error inesperado. Inténtalo de nuevo.");
       setMessageType("error");
-      return;
     }
-
-    setMessage("Registro exitoso. Redirigiendo...");
-    setMessageType("success");
-    setTimeout(() => navigate("/"), 2000);
   };
 
   return (
     <div className="register-container">
-
-      {/* Botón atrás */}
       <button onClick={() => navigate(-1)} className="back-button-inline">
         &larr; Volver
       </button>
 
-      {/* Mensaje dinámico */}
       {message && (
         <div
           className={`message-box ${
@@ -109,9 +147,7 @@ const Register = () => {
 
       <div className="register-card">
         <h2 className="register-title">Crear Cuenta</h2>
-
         <form onSubmit={handleRegister} className="register-form">
-
           <div className="form-group">
             <label htmlFor="fullName">Nombre Completo</label>
             <input
@@ -155,18 +191,18 @@ const Register = () => {
               id="cedula"
               value={cedula}
               onChange={(e) => setCedula(e.target.value)}
-              placeholder="Número de identificación"
+              placeholder="Cédula"
             />
           </div>
 
           <div className="form-group">
             <label htmlFor="phoneNumber">Teléfono (Opcional)</label>
             <input
-              type="tel"
+              type="text"
               id="phoneNumber"
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
-              placeholder="Ej: +58 412 1234567"
+              placeholder="Teléfono"
             />
           </div>
 
@@ -177,7 +213,7 @@ const Register = () => {
               id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="Crea una contraseña segura"
+              placeholder="Contraseña"
               required
             />
           </div>
@@ -195,14 +231,14 @@ const Register = () => {
           </div>
 
           <button type="submit" className="register-button">
-            Registrarse
+            Crear Cuenta
           </button>
         </form>
 
         <div className="separator"></div>
 
         <p className="login-text">¿Ya tienes cuenta?</p>
-        <Link to="/login" className="login-button-link">
+        <Link to="/Login" className="login-button">
           Iniciar Sesión
         </Link>
       </div>

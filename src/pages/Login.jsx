@@ -5,13 +5,16 @@ import supabase from '../supabase/supabase';
 import '../css/Login.css';
 
 const Login = () => {
-    const [identifier, setIdentifier] = useState(''); // usuario o email
+    // ESTADOS
+    const [identifier, setIdentifier] = useState(''); // Usuario o Email
     const [password, setPassword] = useState('');
     const [message, setMessage] = useState('');
     const [messageType, setMessageType] = useState('');
 
     const navigate = useNavigate();
-
+    
+    const GENERIC_ERROR_MSG = "Credenciales incorrectas. Verifica tu usuario/correo y contraseña.";
+    
     const handleLogin = async (e) => {
         e.preventDefault();
 
@@ -30,7 +33,7 @@ const Login = () => {
         let emailToUse = input;
 
         try {
-            // Si el usuario NO escribe un email, lo buscamos como username
+            // Si el input NO contiene '@', asumimos que es un nombre de usuario.
             if (!input.includes('@')) {
                 const { data, error } = await supabase
                     .from('profiles')
@@ -38,8 +41,9 @@ const Login = () => {
                     .eq('username', input)
                     .single();
 
-                if (error || !data) {
-                    setMessage("Usuario no encontrado.");
+                if (error || !data || !data.email) {
+                    console.error("Error buscando usuario en profiles:", error);
+                    setMessage(GENERIC_ERROR_MSG);
                     setMessageType("error");
                     return;
                 }
@@ -47,40 +51,34 @@ const Login = () => {
                 emailToUse = data.email;
             }
 
-            // Autenticación
+            // AUTENTICACIÓN CON SUPABASE AUTH
             const { error: authError } = await supabase.auth.signInWithPassword({
                 email: emailToUse,
                 password: pass
             });
 
             if (authError) {
-                let msg = "Credenciales incorrectas.";
-
-                if (authError.message.includes("Email not confirmed")) {
-                    msg = "Tu email no está confirmado. Revisa tu bandeja de entrada.";
-                }
-
-                setMessage(msg);
+                console.error("Error en login:", authError.message);
+                setMessage(GENERIC_ERROR_MSG);
                 setMessageType("error");
                 return;
             }
 
-            // Logueo exitoso
+            // LOGIN EXITOSO
             setMessage("✔ Bienvenido, redirigiendo...");
             setMessageType("success");
 
             setTimeout(() => navigate("/"), 1200);
 
         } catch (err) {
-            console.error(err);
-            setMessage("Ocurrió un error inesperado.");
+            console.error("Error inesperado en login:", err);
+            setMessage("Ocurrió un error inesperado. Inténtalo de nuevo.");
             setMessageType("error");
         }
     };
 
     return (
         <div className="login-container">
-            
             <button onClick={() => navigate(-1)} className="back-button">
                 ← Volver
             </button>
@@ -95,7 +93,6 @@ const Login = () => {
                 <h2 className="login-title">Iniciar Sesión</h2>
 
                 <form onSubmit={handleLogin} className="login-form">
-
                     <div className="form-group">
                         <label htmlFor="identifier">Usuario o Email</label>
                         <input
@@ -120,9 +117,9 @@ const Login = () => {
                         />
                     </div>
 
-                    <button type="submit" className="login-button">
+                    <Link  to='/MEDISENSE'type="submit" className="login-button">
                         Iniciar Sesión
-                    </button>
+                    </Link>
                 </form>
 
                 <div className="separator"></div>
