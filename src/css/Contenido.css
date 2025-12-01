@@ -1,6 +1,6 @@
 /* ======== CONTENEDOR GENERAL ======== */
 .medisense-page {
-    background-color: #f6f8fc;
+    background-color:  #0056b3;
     padding-bottom: 4rem;
     font-family: "Segoe UI", sans-serif;
 }
@@ -22,7 +22,7 @@
 .header-section .header-p {
     font-size: 1.05rem;
     line-height: 1.6;
-    color: #4d4d4d;
+    color: #ffffff;
     max-width: 750px;
     margin: 0 auto;
 }
@@ -130,7 +130,7 @@
 
 .diferenciaciones-list li {
     font-weight: 600;
-    color: #333;
+    color: #ffffff;
 }
 
 /* ======== RESPONSIVE (Ajustamos solo el tamaño de fuente y padding en móvil) ======== */

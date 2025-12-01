@@ -63,7 +63,8 @@ const Contenido = () => {
     return (
         <div className="medisense-page">
             <Header2/>
-            
+            <br />
+            <br />
             {/* Sección Superior: Título y Párrafo */}
             <section className="header-section p-text-center p-py-6 p-px-3">
                 <h1 className="p-text-bold">¿Qué es MEDISENSE?</h1>
