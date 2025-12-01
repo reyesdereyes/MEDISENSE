@@ -13,6 +13,7 @@ const Navbar = () => {
         {/* Logo */}
         <div className="navbar-logo">
           <img
+            to="/"
             src="/logo1.svg"
             alt="Logo Medisense"
             className="logo-img"
