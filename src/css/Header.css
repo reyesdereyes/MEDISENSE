@@ -56,7 +56,6 @@ ul, li {
   background-color: var(--color-text-light);
   box-shadow: var(--shadow-md);
   border-radius: var(--border-radius-lg);
-  padding: 12px 20px;
   position: relative;
   z-index: 100;
   margin: 0 10%;
@@ -70,14 +69,14 @@ ul, li {
 
 /* Logo */
 .logo-link img {
-  height: 40px;
+  height: 90px;
   width: auto;
 }
 
 /* Navegación escritorio */
 .nav-links {
   display: none;
-  gap: 15px;
+  gap: 10px;
 }
 
 /* Icono menú móvil */

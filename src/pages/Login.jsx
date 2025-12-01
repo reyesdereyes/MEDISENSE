@@ -1,71 +1,71 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import supabase from "../supabase/supabase"; // Asumiendo que esta es la ruta correcta
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [message, setMessage] = useState("");
-  const [type, setType] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [message, setMessage] = useState("");
+    const [type, setType] = useState("");
 
-  const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
-  // 🔍 Verificar sesión activa
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        navigate("/contenido"); 
-      }
+    // 🔍 Verificar sesión activa
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data } = await supabase.auth.getSession();
+            if (data.session) {
+                navigate("/contenido");
+            }
+        };
+        checkSession();
+    }, [navigate]);
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+
+        if (!email || !password) {
+            setMessage("Por favor completa todos los campos.");
+            setType("error");
+            return;
+        }
+
+        if (!/\S+@\S+\.\S+/.test(email)) {
+            setMessage("Correo inválido.");
+            setType("error");
+            return;
+        }
+
+        try {
+            const { data, error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            });
+
+            if (error) {
+                console.error("Login error:", error);
+                setMessage(error.message);
+                setType("error");
+                return;
+            }
+
+            if (data.session) {
+                setMessage("Inicio de sesión exitoso.");
+                setType("success");
+                setTimeout(() => {
+                    navigate("/contenido");
+                }, 800);
+            }
+        } catch (err) {
+            console.error("Error inesperado:", err);
+            setMessage("Error de conexión con el servidor.");
+            setType("error");
+        }
     };
-    checkSession();
-  }, [navigate]);
 
-  const handleLogin = async (e) => {
-    e.preventDefault();
-
-    if (!email || !password) {
-      setMessage("Por favor completa todos los campos.");
-      setType("error");
-      return;
-    }
-
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      setMessage("Correo inválido.");
-      setType("error");
-      return;
-    }
-
-    try {
-      const { data, error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      });
-
-      if (error) {
-        console.error("Login error:", error);
-        setMessage(error.message);
-        setType("error");
-        return;
-      }
-
-      if (data.session) {
-        setMessage("Inicio de sesión exitoso.");
-        setType("success");
-        setTimeout(() => {
-          navigate("/contenido");
-        }, 800);
-      }
-    } catch (err) {
-      console.error("Error inesperado:", err);
-      setMessage("Error de conexión con el servidor.");
-      setType("error");
-    }
-  };
-
-  return (
-    <div className="login-container">
-      <style>{`
+    return (
+        <div className="login-container">
+            <style>{`
         :root {
           --primary: #10b981;
           --dark: #1a2c42;
@@ -142,40 +142,60 @@ const Login = () => {
           border-radius: 8px;
           cursor: pointer;
         }
+                        img {
+                max-width: 350px;  
+                display: block; 
+                margin: 0 auto 20px auto;
+
+                /* Animación de pulsación */
+                animation: pulse 2s infinite ease-in-out;
+                }
+
+                @keyframes pulse {
+                0%, 100% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                }
+
       `}</style>
 
-      <div className="card">
-        <h2 className="title">Iniciar Sesión</h2>
+      <img src="/Diseño sin título (3).svg" alt="Log" />
 
-        {message && <div className={`msg ${type}`}>{message}</div>}
+            <div className="card">
+                <h2 className="title">Iniciar Sesión</h2>
 
-        <form onSubmit={handleLogin}>
-          <input
-            type="email"
-            placeholder="Correo electrónico"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+                {message && <div className={`msg ${type}`}>{message}</div>}
 
-          <input
-            type="password"
-            placeholder="Contraseña"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+                <form onSubmit={handleLogin}>
+                    <input
+                        type="email"
+                        placeholder="Correo electrónico"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
 
-          <button className="btn">Ingresar</button>
-        </form>
+                    <input
+                        type="password"
+                        placeholder="Contraseña"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
 
-        <div className="register">
-          ¿No tienes cuenta?
-          <a href="/registro" className="register-btn">Crear Cuenta</a>
+                    <button className="btn">Ingresar</button>
+                </form>
+
+                <div className="register">
+                    ¿No tienes cuenta?
+                    <a href="/registro" className="register-btn">Crear Cuenta</a>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Login;
