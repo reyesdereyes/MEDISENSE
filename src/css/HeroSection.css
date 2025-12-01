@@ -215,7 +215,7 @@
 .card-envio .card-icon,
 .card-envio .card-title,
 .card-envio .card-description {
-    color: white;
+    color:  #0056b3;
 }
 
 .card-envio .card-subtitle {
@@ -266,4 +266,27 @@
     .card-description {
         font-size: 1.1rem;
     }
+}
+/* General */
+.card-subtitle {
+    font-size: 1rem;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    /* Color base claro para fondos oscuros */
+    color: #ffffff;
+}
+
+/* Tarjeta IA (fondo blanco, cambiar subtítulo a gris oscuro) */
+.card-ia .card-subtitle {
+    color: #555555; /* contraste sobre fondo blanco */
+}
+
+/* Tarjeta médico (fondo azul oscuro) */
+.card-medico .card-subtitle {
+    color: #cce0ff; /* claro sobre azul */
+}
+
+/* Tarjeta envío (fondo azul) */
+.card-envio .card-subtitle {
+    color: #e0f0ff; /* claro sobre azul */
 }

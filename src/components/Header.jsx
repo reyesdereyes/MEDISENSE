@@ -1,70 +1,61 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import '../css/Header.css';
-import { IoSearch } from 'react-icons/io5'; 
-// Importamos RiCloseLine para tener un ícono de "cerrar" para el campo de búsqueda
+import { FiMenu } from 'react-icons/fi'; 
 import { RiCloseLine } from 'react-icons/ri'; 
 import { Link } from 'react-router-dom';
 
 const Header = () => {
-  // Estado para controlar la visibilidad del campo de búsqueda
-  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const menuRef = useRef(null);
 
-  const toggleSearch = () => {
-    setIsSearchVisible(!isSearchVisible);
-  };
+  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
+        if (!event.target.closest('.menu-icon-container')) {
+          setIsMenuOpen(false);
+        }
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [isMenuOpen]);
 
   return (
-    <nav className="navbar bg-body-tertiary  py-2 "> 
-      <div className="container-fluid">
-        {/* Enlace de Marca/Logo */}
-        <a className="navbar-brand" href="#">
-          <img 
-            src="../logo.png" 
-            alt="Logo" 
-            width="200" 
-            height="40" 
-            className="d-inline-block align-text-top"
-          />
-        </a>
-        
-        {/* Campo de Búsqueda Dinámico */}
-        <div className={`search-input-wrapper ${isSearchVisible ? 'visible' : ''}`}>
-          <input 
-            type="text" 
-            placeholder="Buscar..." 
-            className="search-input" 
-          />
+    <header className="header">
+      <div className="container">
+        {/* Logo */}
+        <Link to="/" className="logo-link">
+          <img src="../logo.png" alt="MEDISENSE Logo" />
+        </Link>
+
+        {/* Botones de escritorio */}
+        <nav className="nav-links">
+          <Link to="/login" className="creative-button primary">Iniciar Sesión</Link>
+          <Link to="/registro" className="creative-button secondary">Registrarse</Link>
+        </nav>
+
+        {/* Icono menú móvil */}
+        <div className="menu-icon-container" onClick={toggleMenu}>
+          {isMenuOpen ? <RiCloseLine size={28} /> : <FiMenu size={24} />}
         </div>
-        
-        {/* Contenedor Flex para los Botones y la Lupa */}
-        {/* 'ms-auto' solo se aplica si el campo de búsqueda no es visible completamente, 
-           o si queremos mantener un espacio entre el input y los botones */}
-        <div className="d-flex align-items-center ms-auto gap-3">
-          {/* Botones */}
-          <div className={`d-flex gap-2 ${isSearchVisible ? 'buttons-hidden' : ''}`}>
-            {/* Botón 1: Iniciar Sesión - Nuevo estilo 'creative-button' */}
-            <Link to="/Login"className="creative-button primary" type="button">
-              Iniciar Sesión
-            </Link>
-            
-            {/* Botón 2: Registrarse - Nuevo estilo 'creative-button' */}
-            <Link to="/registro"  className="creative-button secondary" type="button"> 
-              Registrarse
-            </Link>
-          </div>
-          
-          {/* ÍCONO DE LUPA/CERRAR - Ahora es funcional */}
-          <div className="search-icon-container" onClick={toggleSearch}>
-            {isSearchVisible ? (
-              <RiCloseLine size={28} className="search-icon close-icon" /> // Ícono de cerrar cuando está activo
-            ) : (
-              <IoSearch size={24} className="search-icon" /> // Ícono de lupa cuando está inactivo
-            )}
-          </div>
+
+        {/* Menú lateral móvil */}
+        <div ref={menuRef} className={`off-canvas-menu ${isMenuOpen ? 'open' : ''}`}>
+          <Link to="/login" className="creative-button primary menu-btn" onClick={toggleMenu}>Iniciar Sesión</Link>
+          <Link to="/registro" className="creative-button secondary menu-btn" onClick={toggleMenu}>Registrarse</Link>
         </div>
+
+        {/* Overlay oscuro */}
+        <div className={`menu-overlay ${isMenuOpen ? 'visible' : ''}`} onClick={toggleMenu}></div>
       </div>
-    </nav>
+    </header>
   );
-}
+};
 
 export default Header;

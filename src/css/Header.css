@@ -1,484 +1,323 @@
-/* ------------------------------------- */
-/* CONTENEDOR PRINCIPAL Y FONDO (LOGIN) */
-/* ------------------------------------- */
-.login-container {
-    background-color: #2b77c9;
-    min-height: 100vh; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 20px;
-    position: relative; 
+/* ========================================================================= */
+/* 1. VARIABLES GLOBALES Y UTILIDADES */
+/* ========================================================================= */
+
+:root {
+  /* Colores */
+  --color-primary: #007bff;
+  --color-primary-dark: #0056b3;
+  --color-secondary: #f7931e;
+  --color-text-dark: #333;
+  --color-text-light: #fff;
+  --color-light-gray: #f8f9fa;
+
+  /* Sombras */
+  --shadow-sm: 0 2px 4px rgba(0,0,0,0.08);
+  --shadow-md: 0 6px 15px rgba(0,0,0,0.1);
+  --shadow-lg: 0 10px 30px rgba(0,0,0,0.15);
+
+  /* Bordes y transiciones */
+  --border-radius-base: 10px;
+  --border-radius-lg: 20px;
+  --transition-speed: 0.25s;
 }
 
-/* ------------------------------------- */
-/* TARJETA DE LOGIN */
-/* ------------------------------------- */
-.login-card {
-    background: #ffffff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-    transition: transform 0.3s ease;
+/* ========================================================================= */
+/* 2. ESTILOS BASE GLOBAL */
+/* ========================================================================= */
+
+* {
+  box-sizing: border-box;
 }
 
-.login-title {
-    color: #333;
-    font-size: 2rem;
-    font-weight: 700;
-    margin-bottom: 25px;
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--color-light-gray);
+  color: var(--color-text-dark);
+  margin: 0;
+  padding: 0;
 }
 
-/* ------------------------------------- */
-/* FORMULARIO Y ENTRADAS */
-/* ------------------------------------- */
-.login-form .form-group {
-    margin-bottom: 20px;
-    text-align: left;
+a {
+  text-decoration: none;
 }
 
-.login-form label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #555;
+ul, li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.login-form input {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: border-color 0.3s, box-shadow 0.3s;
+/* ========================================================================= */
+/* 3. HEADER / NAVBAR */
+/* ========================================================================= */
+
+.header {
+  background-color: var(--color-text-light);
+  box-shadow: var(--shadow-md);
+  border-radius: var(--border-radius-lg);
+  padding: 12px 20px;
+  position: relative;
+  z-index: 100;
+  margin: 0 10%;
 }
 
-.login-form input:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-    outline: none;
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-/* ------------------------------------- */
-/* BOTÓN INICIAR SESIÓN (Submit) */
-/* ------------------------------------- */
-.login-button {
-    width: 100%;
-    padding: 12px;
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-size: 1.1rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.1s;
-    margin-top: 10px;
+/* Logo */
+.logo-link img {
+  height: 40px;
+  width: auto;
 }
 
-.login-button:hover {
-    background: linear-gradient(135deg, #0056b3, #003d80);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+/* Navegación escritorio */
+.nav-links {
+  display: none;
+  gap: 15px;
 }
 
-.login-button:active {
-    transform: translateY(1px);
+/* Icono menú móvil */
+.menu-icon-container {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-dark);
 }
 
-/* ------------------------------------- */
-/* SEPARADOR Y REGISTRO (EN TEXTO) */
-/* ------------------------------------- */
-.separator {
-    height: 1px;
-    background-color: #eee;
-    margin: 25px 0 20px 0;
-}
+/* ========================================================================= */
+/* 4. BOTONES MODERNOS Y ANIMADOS */
+/* ========================================================================= */
 
-.register-text {
-    color: #777;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-}
-
-.register-link {
-    font-weight: 700;
-    color: #007bff;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.register-link:hover {
-    color: #0056b3;
-    text-decoration: underline;
-}
-
-/* ------------------------------------- */
-/* BOTÓN VOLVER (NUEVA POSICIÓN INLINE) */
-/* ------------------------------------- */
-.back-button-inline {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #f8f9fa;
-    color: #6c757d;
-    border: 1px solid #ced4da;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s, border-color 0.3s;
-    width: auto;
-    margin-top: 15px;
-}
-
-.back-button-inline:hover {
-    background-color: #e2e6ea;
-    border-color: #dae0e5;
-}
-
-/* ------------------------------------- */
-/* MENSAJES DE ESTADO (Éxito/Error) */
-/* ------------------------------------- */
-.message-box {
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    font-weight: 600;
-    text-align: center;
-}
-
-.message-success {
-    background-color: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
-}
-
-/* ------------------------------------- */
-/* HERO BANNER (Sección Azul Oscuro) - ESTILOS BASE PC/DEFAULT */
-/* ------------------------------------- */
-.hero-container {
-    padding-bottom: 5rem;
-}
-
-.main-banner {
-    background-color: transparent; 
-    color: white;
-    padding-top: 5rem !important; 
-    padding-bottom: 10rem !important;
-    border-radius: 0 0 20px 20px;
-}
-
-.banner-title {
-    font-size: 3rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-}
-
-.banner-subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    max-width: 600px;
-}
-
-/* ------------------------------------- */
-/* FEATURE CARDS (Tarjetas) - ESTILOS BASE PC/DEFAULT */
-/* ------------------------------------- */
-.feature-cards-wrapper {
-    margin-top: -6rem;
-    position: relative;
-    z-index: 10;
-}
-
-.feature-card {
-    background-color: #ffffff;
-    border-radius: 12px;
-    padding: 120px;
-    height: 100%;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.feature-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-}
-
-.icon-wrapper {
-    display: inline-block;
-    padding: 10px;
-}
-
-.card-title {
-    font-size: 1.4rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.card-subtitle {
-    font-size: 1rem;
-    font-weight: 400;
-    margin-bottom: 0;
-    color: #6c757d;
-}
-
-.card-description {
-    font-size: 1.1rem;
-    font-weight: 600;
-    color: #333;
-}
-
-/* ------------------------------------- */
-/* Estilos Específicos de Color por Tarjeta */
-/* ------------------------------------- */
-.card-ia .card-icon {
-    color: #2b77c9; 
-}
-.card-ia .card-title {
-    color: #f7931e; 
-}
-
-.card-medico {
-    background-color: #ffffff; 
-    color: #2b77c9; 
-}
-.card-medico .card-icon {
-    color: #2b77c9; 
-}
-.card-medico .card-title,
-.card-medico .card-description {
-    color: #2b77c9; 
-}
-.card-medico .card-subtitle {
-    color: #6c757d; 
-}
-
-.card-envio {
-    background-color: #0056b3; 
-    color: white; 
-}
-.card-envio .card-icon {
-    color: white;
-}
-.card-envio .card-title,
-.card-envio .card-description {
-    color: white;
-}
-.card-envio .card-subtitle {
-    color: #c7dfff; 
-}
-
-/* ------------------------------------- */
-/* NAV BAR & BOTONES CREATIVOS */
-/* ------------------------------------- */
-nav {
-    margin-right: 10%;
-    margin-left: 10%;
-    border-radius: 15px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-}
-
-/* Botones creativos */
 .creative-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  display: inline-block;
+  padding: 10px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  text-align: center;
+  transition: all var(--transition-speed) ease;
+  border: 2px solid transparent;
 }
 
+/* Botón primario */
 .creative-button.primary {
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: #ffffff;
-    text-decoration: none; /* Quita la línea por defecto */
+  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  color: var(--color-text-light);
+  border-color: var(--color-primary-dark);
 }
 
 .creative-button.primary:hover {
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
-    transform: translateY(-1px);
-    background: linear-gradient(135deg, #0056b3, #003d80);
-}
-.creative-button.primary:active {
-    transform: translateY(1px);
+  background: linear-gradient(135deg, var(--color-primary-dark), #004080);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: #004080;
 }
 
+/* Botón secundario */
 .creative-button.secondary {
-    background-color: #ffffff;
-    color: #007bff;
-    border: 2px solid #007bff;
-    box-shadow: none;
+  background-color: var(--color-text-light);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .creative-button.secondary:hover {
-    background-color: #e6f0ff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transform: translateY(-1px);
-}
-.creative-button.secondary:active {
-    transform: translateY(1px);
-}
-
-/* ------------------------------------- */
-/* ESTILOS DEL CAMPO DE BÚSQUEDA */
-/* ------------------------------------- */
-.search-input-wrapper {
-    position: absolute;
-    right: 150px;
-    width: 0;
-    opacity: 0;
-    pointer-events: none;
-    transition: width 0.3s ease, opacity 0.3s ease;
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--color-primary-dark);
 }
 
-.search-input-wrapper.visible {
-    width: 250px;
-    opacity: 1;
-    pointer-events: all;
+/* ========================================================================= */
+/* 5. MENÚ LATERAL MÓVIL */
+/* ========================================================================= */
+
+.off-canvas-menu {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100vh;
+  background-color: var(--color-text-light);
+  padding: 80px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  box-shadow: -4px 0 20px rgba(0,0,0,0.2);
+  transition: right var(--transition-speed) ease;
+  z-index: 200;
 }
 
-.search-input {
-    width: 100%;
-    padding: 8px 15px;
-    border: 2px solid #ccc;
-    border-radius: 50px;
-    font-size: 1rem;
-    transition: border-color 0.2s ease;
+.off-canvas-menu.open {
+  right: 0;
 }
 
-.search-input:focus {
-    border-color: #007bff;
-    outline: none;
+.off-canvas-menu .creative-button {
+  width: 100%;
+  font-size: 1rem;
+  text-align: center;
 }
 
-.buttons-hidden {
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.3s ease;
+/* Overlay oscuro al abrir menú */
+.menu-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0,0,0,0.4);
+  z-index: 150;
 }
 
-.search-icon-container {
-    padding: 8px;
-    cursor: pointer;
-    border-radius: 50%;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    z-index: 10;
+.menu-overlay.visible {
+  display: block;
 }
 
-.search-icon {
-    color: #6c757d;
-    display: block;
-}
-.close-icon {
-    color: #dc3545;
-}
+/* ========================================================================= */
+/* 6. HERO SECTION / BANNERS */
+/* ========================================================================= */
 
-.search-icon-container:hover {
-    background-color: #f0f0f0;
-}
-
-.search-icon-container:hover .search-icon {
-    color: #007bff;
+.hero-container {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+  padding: 4rem 1rem;
+  text-align: center;
 }
 
-.search-icon-container:hover .close-icon {
-    color: #dc3545;
+.banner-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 0.75rem;
+  color: var(--color-text-light);
+  text-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
 
-/* ------------------------------------- */
-/* RESPONSIVIDAD GENERAL (MOBILE FIRST) */
-/* ------------------------------------- */
-@media (max-width: 600px) {
-    .login-container {
-        padding: 10px;
-    }
+.banner-subtitle {
+  font-size: 1.25rem;
+  font-weight: 400;
+  max-width: 90vw;
+  margin: 0 auto 2rem auto;
+  color: var(--color-text-light);
+  text-shadow: 0 1px 4px rgba(0,0,0,0.2);
+}
 
-    .login-card {
-        padding: 30px 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    }
+/* ========================================================================= */
+/* 7. FEATURE CARDS */
+/* ========================================================================= */
 
-    .login-title {
-        font-size: 1.75rem;
-        margin-bottom: 20px;
-    }
+.feature-cards-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
 
-    .login-form input {
-        padding: 10px 12px;
-        font-size: 0.95rem;
-    }
+.feature-card {
+  background-color: var(--color-text-light);
+  border-radius: var(--border-radius-base);
+  padding: 30px;
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--color-text-dark);
+  flex: 1 1 300px;
+}
 
-    .login-button {
-        padding: 10px;
-        font-size: 1rem;
-    }
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+}
 
-    .back-button-inline {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
+.feature-card .card-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin-bottom: 0.5rem;
+}
 
-    .main-banner {
-        padding-top: 3rem !important;
-        padding-bottom: 5rem !important;
-        text-align: center;
-    }
+.feature-card .card-subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  margin-bottom: 0.5rem;
+}
 
-    .banner-title {
-        font-size: 2rem;
-    }
+.feature-card .card-description {
+  font-size: 1rem;
+  font-weight: 600;
+}
 
-    .banner-subtitle {
-        font-size: 1.1rem;
-    }
+/* Tarjetas específicas */
+.card-ia {
+  background-color: #fff;
+  color: var(--color-secondary);
+}
 
-    .feature-cards-wrapper {
-        margin-top: -3rem;
-    }
+.card-ia .card-icon {
+  color: var(--color-primary);
+}
 
-    .feature-card {
-        padding: 30px;
-        margin-bottom: 20px;
-    }
+.card-medico {
+  background-color: var(--color-primary-dark);
+  color: var(--color-text-light);
+}
 
-    .card-title {
-        font-size: 1.2rem;
-    }
+.card-medico .card-icon,
+.card-medico .card-title,
+.card-medico .card-description {
+  color: var(--color-text-light);
+}
 
-    .card-description {
-        font-size: 1rem;
-    }
+.card-envio {
+  background-color: var(--color-primary);
+  color: var(--color-text-light);
+}
 
-    nav {
-        margin-right: 10px;
-        margin-left: 10px;
-        padding: 10px 0;
-    }
+.card-envio .card-icon,
+.card-envio .card-title,
+.card-envio .card-description {
+  color: var(--color-text-light);
+}
 
-    .creative-button {
-        padding: 8px 15px;
-        font-size: 0.85rem;
-    }
+/* ========================================================================= */
+/* 8. MEDIA QUERIES */
+/* ========================================================================= */
 
-    .search-input-wrapper {
-        right: 5px;
-    }
+@media(min-width: 768px) {
+  .nav-links {
+    display: flex;
+  }
 
-    .search-input-wrapper.visible {
-        width: 150px;
-    }
+  .menu-icon-container,
+  .off-canvas-menu,
+  .menu-overlay {
+    display: none;
+  }
 
-    .search-input {
-        padding: 6px 12px;
-    }
+  .banner-title {
+    font-size: 3rem;
+  }
+
+  .banner-subtitle {
+    font-size: 1.5rem;
+    max-width: 600px;
+  }
+
+  .feature-card {
+    flex: 1 1 300px;
+  }
+}
+
+@media(max-width: 767px) {
+  .creative-button {
+    padding: 8px 20px;
+    font-size: 0.95rem;
+  }
 }
