@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";   // ✅ Importar useNavigate
 import supabase from "../supabase/supabase";
 
 const Login = () => {
@@ -7,21 +8,22 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
 
+  const navigate = useNavigate();  // ✅ Definir navigate
+
   // 🔍 Verificar sesión activa
-    useEffect(() => {
-        const checkSession = async () => {
-            const { data } = await supabase.auth.getSession();
-            if (data.session) {
-                navigate("/contenido");
-            }
-        };
-        checkSession();
-    }, [navigate]);
+     useEffect(() => {
+    const checkSession = async () => {
+      const { data } = await supabase.auth.getSession();
+      if (data.session) {
+        navigate("/contenido");   // ✅ Navegación correcta
+      }
+    };
+    checkSession();
+  }, [navigate]);
 
-    const handleLogin = async (e) => {
-        e.preventDefault();
+  const handleLogin = async (e) => {
+    e.preventDefault();
 
-    // Validación de campos
     if (!email || !password) {
       setMessage("Por favor completa todos los campos.");
       setType("error");
@@ -51,7 +53,7 @@ const Login = () => {
         setMessage("Inicio de sesión exitoso.");
         setType("success");
         setTimeout(() => {
-          window.location.href = "/contenido";
+          navigate("/contenido");   // ✅ Usar navigate en vez de window.location.href
         }, 800);
       }
     } catch (err) {
