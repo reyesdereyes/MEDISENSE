@@ -8,19 +8,18 @@ const Login = () => {
   const [type, setType] = useState("");
 
   // 🔍 Verificar sesión activa
-  useEffect(() => {
-    const checkSession = async () => {
-      const { data } = await supabase.auth.getSession();
-      if (data.session) {
-        window.location.href = "/contenido";
-      }
-    };
-    checkSession();
-  }, []);
+    useEffect(() => {
+        const checkSession = async () => {
+            const { data } = await supabase.auth.getSession();
+            if (data.session) {
+                navigate("/contenido");
+            }
+        };
+        checkSession();
+    }, [navigate]);
 
-  // 🔐 Login
-  const handleLogin = async (e) => {
-    e.preventDefault();
+    const handleLogin = async (e) => {
+        e.preventDefault();
 
     // Validación de campos
     if (!email || !password) {
@@ -52,7 +51,7 @@ const Login = () => {
         setMessage("Inicio de sesión exitoso.");
         setType("success");
         setTimeout(() => {
-          window.location.href = " /contenido";
+          window.location.href = "/contenido";
         }, 800);
       }
     } catch (err) {
