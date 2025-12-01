@@ -162,7 +162,7 @@ const Login = () => {
 
       `}</style>
 
-      <img src="/Diseño sin título (3).svg" alt="Log" />
+      <img src="/logo1.svg" alt="Log" />
 
             <div className="card">
                 <h2 className="title">Iniciar Sesión</h2>

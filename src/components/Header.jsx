@@ -31,7 +31,7 @@ const Header = () => {
       <div className="container">
         {/* Logo */}
         <Link to="/" className="logo-link">
-          <img src="public/Diseño sin título (3).svg" alt="MEDISENSE Logo" />
+          <img src="/logo1.svg" alt="MEDISENSE Logo" />
         </Link>
 
         {/* Botones de escritorio */}
