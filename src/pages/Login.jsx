@@ -12,7 +12,7 @@ const Login = () => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
-        window.location.href = "/MEDISENSE";
+        window.location.href = "/contenido";
       }
     };
     checkSession();
@@ -52,7 +52,7 @@ const Login = () => {
         setMessage("Inicio de sesión exitoso.");
         setType("success");
         setTimeout(() => {
-          window.location.href = "/MEDISENSE";
+          window.location.href = " /contenido";
         }, 800);
       }
     } catch (err) {
