@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";   // ✅ Importar useNavigate
-import supabase from "../supabase/supabase";
+import { useNavigate } from "react-router-dom"; 
+import supabase from "../supabase/supabase"; // Asumiendo que esta es la ruta correcta
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -8,14 +8,14 @@ const Login = () => {
   const [message, setMessage] = useState("");
   const [type, setType] = useState("");
 
-  const navigate = useNavigate();  // ✅ Definir navigate
+  const navigate = useNavigate(); 
 
   // 🔍 Verificar sesión activa
-     useEffect(() => {
+  useEffect(() => {
     const checkSession = async () => {
       const { data } = await supabase.auth.getSession();
       if (data.session) {
-        navigate("/contenido");   // ✅ Navegación correcta
+        navigate("/contenido"); 
       }
     };
     checkSession();
@@ -53,7 +53,7 @@ const Login = () => {
         setMessage("Inicio de sesión exitoso.");
         setType("success");
         setTimeout(() => {
-          navigate("/contenido");   // ✅ Usar navigate en vez de window.location.href
+          navigate("/contenido");
         }, 800);
       }
     } catch (err) {

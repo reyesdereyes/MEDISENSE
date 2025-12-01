@@ -6,7 +6,7 @@ import 'primeicons/primeicons.css';
 import 'primeflex/primeflex.css'; 
 import '../css/Contenido.css'; // Importa tus estilos personalizados
 
-import Header2 from '../components/Header2.jsx'; 
+import Header2 from '../components/Header2.jsx'; // Asumiendo que esta es la ruta correcta
 
 const Contenido = () => {
 

@@ -5,7 +5,6 @@ import Principal from './pages/Principal.jsx';
 import Register from './pages/Register.jsx';
 import Contenido from './pages/Contenido.jsx';
 
-
 function App() {
   return (
     <>
@@ -14,7 +13,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Register />} />
         <Route path="/contenido" element={<Contenido/>} />
-      
       </Routes>
     </>
   );
